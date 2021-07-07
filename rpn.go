@@ -13,6 +13,6 @@ func main() {
 	s.Scan()
 	input := s.Text()
 	l := strings.Split(input, " ")
-	fmt.Println(1)
+	fmt.Println(l[1])
 
 }
