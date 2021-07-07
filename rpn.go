@@ -27,6 +27,7 @@ func calculater(l []string) int {
 }
 
 func main() {
+
 	s := bufio.NewScanner(os.Stdin)
 	s.Scan()
 	input := s.Text()
@@ -35,3 +36,5 @@ func main() {
 	fmt.Println(calculater(l))
 
 }
+
+// 1 2 + 3 +
