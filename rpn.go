@@ -9,13 +9,17 @@ import (
 	"strings"
 )
 
-/*
-func calculater(n1 string, n2 string, s string) int {
+func remove(slice []string, s int) []string {
+	return append(slice[:s], slice[s+1:]...)
+}
+
+func calculater(n1 string, n2 string, s string) string {
 	var x [2]int
 	x[0], _ = strconv.Atoi(n1)
 	x[1], _ = strconv.Atoi(n2)
 
 	var result int
+	var returnresult string
 
 	if s == "+" {
 		result = x[0] + x[1]
@@ -24,9 +28,11 @@ func calculater(n1 string, n2 string, s string) int {
 	} else if s == "*" {
 		result = x[0] * x[1]
 	}
-	return result
+
+	returnresult = strconv.Itoa(result)
+	return returnresult
 }
-*/
+
 func search(ls []string) int {
 	length := len(ls)
 	for i := 0; i < length; i++ {
@@ -36,8 +42,6 @@ func search(ls []string) int {
 			return i
 		} else if ls[i] == "*" {
 			return i
-		} else {
-			return 2
 		}
 	}
 	return 0
@@ -50,9 +54,18 @@ func main() {
 	input := s.Text()
 	l := strings.Split(input, " ")
 
-	//fmt.Println(calculater(l[0], l[1], l[2]))
-	fmt.Println(len(l))
+	for {
+		i := search(l)
+		if i == 0 {
+			break
+		}
+		l[i-2] = calculater(l[i-2], l[i-1], l[i])
+		l = remove(l, i)
+		l = remove(l, i-1)
+	}
 
+	answer, _ := strconv.Atoi(l[0])
+	fmt.Println(answer)
 }
 
 // 1 2 + 3 +
